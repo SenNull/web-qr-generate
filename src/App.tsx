@@ -3,6 +3,8 @@ import { ChakraProvider, Box, Flex, Input, Text, Container, Heading } from '@cha
 import { QRCodeSVG } from 'qrcode.react';
 import dsBridge from 'dsbridge';
 import VConsole from 'vconsole';
+import { useTranslation } from 'react-i18next';
+import './i18n';
 
 // 仅在开发环境中初始化vconsole和dsBridge调试模式
 if (process.env.NODE_ENV === 'development') {
@@ -14,6 +16,7 @@ if (process.env.NODE_ENV === 'development') {
 function App() {
   const [text, setText] = React.useState('');
   const [version, setVersion] = React.useState('0.0.2');
+  const { t } = useTranslation();
 
   React.useEffect(() => {
     // 尝试获取原生App版本号
@@ -29,12 +32,12 @@ function App() {
         // });
         setVersion(dsBridge.call('app.getAppVersion'));
       } catch (error) {
-        console.log('获取版本号失败，使用默认版本号', error);
+        console.log(t('error.versionFailed'), error);
       }
     };
 
     getAppVersion();
-  }, []);
+  }, [t]);
 
   return (
     <ChakraProvider>
@@ -42,16 +45,16 @@ function App() {
         <Container maxW="container.md">
           <Flex direction="column" gap={8}>
             <Heading as="h1" size="xl" color="blue.600">
-              二维码生成器
+              {t('title')}
             </Heading>
             
             <Box w="100%" bg="white" p={6} borderRadius="lg" boxShadow="md">
               <Flex direction="column" gap={4}>
                 <Text fontSize="lg" color="gray.600">
-                  请输入要生成二维码的文本：
+                  {t('inputLabel')}
                 </Text>
                 <Input
-                  placeholder="在此输入文本..."
+                  placeholder={t('inputPlaceholder')}
                   value={text}
                   onChange={(e) => setText(e.target.value)}
                   size="lg"
@@ -71,7 +74,7 @@ function App() {
             </Box>
 
             <Text textAlign="center" color="gray.500" fontSize="sm">
-              版本 {version}
+              {t('version')} {version}
             </Text>
           </Flex>
         </Container>
