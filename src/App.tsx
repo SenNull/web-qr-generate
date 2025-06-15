@@ -1,9 +1,40 @@
 import * as React from 'react';
 import { ChakraProvider, Box, Flex, Input, Text, Container, Heading } from '@chakra-ui/react';
 import { QRCodeSVG } from 'qrcode.react';
+import dsBridge from 'dsbridge';
+import VConsole from 'vconsole';
+
+// 仅在开发环境中初始化vconsole和dsBridge调试模式
+if (process.env.NODE_ENV === 'development') {
+  new VConsole();
+  // 启用dsBridge调试模式
+  // dsBridge.debug = true;
+}
 
 function App() {
   const [text, setText] = React.useState('');
+  const [version, setVersion] = React.useState('0.0.2');
+
+  React.useEffect(() => {
+    // 尝试获取原生App版本号
+    const getAppVersion = () => {
+      try {
+        console.log('call ：app.getAppVersion');
+        
+        // dsBridge.call('app.getAppVersion', null, (v: string) => {
+        //   console.log('当前应用版本：', v);
+        //   if (v) {
+        //     setVersion(v);
+        //   }
+        // });
+        setVersion(dsBridge.call('app.getAppVersion'));
+      } catch (error) {
+        console.log('获取版本号失败，使用默认版本号', error);
+      }
+    };
+
+    getAppVersion();
+  }, []);
 
   return (
     <ChakraProvider>
@@ -38,6 +69,10 @@ function App() {
                 </Box>
               </Flex>
             </Box>
+
+            <Text textAlign="center" color="gray.500" fontSize="sm">
+              版本 {version}
+            </Text>
           </Flex>
         </Container>
       </Box>
