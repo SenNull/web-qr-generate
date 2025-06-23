@@ -1,10 +1,13 @@
 import * as React from 'react';
-import { ChakraProvider, Box, Flex, Input, Text, Container, Heading } from '@chakra-ui/react';
+import { Layout, Input, Typography, Card, Space, ConfigProvider } from 'antd';
 import { QRCodeSVG } from 'qrcode.react';
 import dsBridge from 'dsbridge';
 import VConsole from 'vconsole';
 import { useTranslation } from 'react-i18next';
 import './i18n';
+
+const { Content } = Layout;
+const { Title, Text } = Typography;
 
 // 仅在开发环境中初始化vconsole和dsBridge调试模式
 if (process.env.NODE_ENV === 'development') {
@@ -40,46 +43,58 @@ function App() {
   }, [t]);
 
   return (
-    <ChakraProvider>
-      <Box minH="100vh" bg="gray.50" py={10}>
-        <Container maxW="container.md">
-          <Flex direction="column" gap={8}>
-            <Heading as="h1" size="xl" color="blue.600">
-              {t('title')}
-            </Heading>
-            
-            <Box w="100%" bg="white" p={6} borderRadius="lg" boxShadow="md">
-              <Flex direction="column" gap={4}>
-                <Text fontSize="lg" color="gray.600">
-                  {t('inputLabel')}
-                </Text>
-                <Input
-                  placeholder={t('inputPlaceholder')}
-                  value={text}
-                  onChange={(e) => setText(e.target.value)}
-                  size="lg"
-                />
-                
-                <Box p={4} bg="gray.50" borderRadius="md" display="flex" justifyContent="center">
-                  {text && (
-                    <QRCodeSVG
-                      value={text}
-                      size={256}
-                      level="H"
-                      includeMargin={true}
-                    />
-                  )}
-                </Box>
-              </Flex>
-            </Box>
+    <ConfigProvider>
+      <Layout style={{ minHeight: '100vh', backgroundColor: '#f5f5f5' }}>
+        <Content style={{ padding: '40px 24px' }}>
+          <div style={{ maxWidth: '768px', margin: '0 auto' }}>
+            <Space direction="vertical" size="large" style={{ width: '100%', display: 'flex' }}>
+              <Title level={1} style={{ color: '#1890ff', textAlign: 'center' }}>
+                {t('title')}
+              </Title>
+              
+              <Card style={{ width: '100%' }}>
+                <Space direction="vertical" size="middle" style={{ width: '100%', display: 'flex' }}>
+                  <Text style={{ fontSize: '16px', color: '#666' }}>
+                    {t('inputLabel')}
+                  </Text>
+                  <Input
+                    placeholder={t('inputPlaceholder')}
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                    size="large"
+                  />
+                  
+                  <div style={{ 
+                    padding: '16px', 
+                    backgroundColor: '#f5f5f5', 
+                    borderRadius: '8px', 
+                    display: 'flex', 
+                    justifyContent: 'center' 
+                  }}>
+                    {text && (
+                      <QRCodeSVG
+                        value={text}
+                        size={256}
+                        level="H"
+                        includeMargin={true}
+                      />
+                    )}
+                  </div>
+                </Space>
+              </Card>
 
-            <Text textAlign="center" color="gray.500" fontSize="sm">
-              {t('version')} {version}
-            </Text>
-          </Flex>
-        </Container>
-      </Box>
-    </ChakraProvider>
+              <Text style={{ 
+                textAlign: 'center', 
+                color: '#999', 
+                fontSize: '14px' 
+              }}>
+                {t('version')} {version}
+              </Text>
+            </Space>
+          </div>
+        </Content>
+      </Layout>
+    </ConfigProvider>
   );
 }
 

@@ -1,12 +1,14 @@
 # 在线二维码生成器
 
-这是一个简单的在线二维码生成器，使用 React 和 TypeScript 构建。用户可以输入文本，实时生成对应的二维码。
+这是一个简单的在线二维码生成器，使用 React、TypeScript 和 Ant Design 构建。用户可以输入文本，实时生成对应的二维码。
 
 ## 功能特点
 
 - 实时二维码生成
-- 响应式设计
-- 简洁美观的界面
+- 基于 Ant Design 的现代化UI界面
+- 响应式设计，支持多设备
+- 多语言支持（国际化）
+- 企业级组件库保证的优秀用户体验
 
 ## 本地开发
 
@@ -21,12 +23,29 @@ cd web-qr-generate
 npm install
 ```
 
+注意：如果从旧版本升级，建议先清理node_modules：
+```bash
+rm -rf node_modules package-lock.json
+npm install
+```
+
 3. 启动开发服务器
 ```bash
 npm start
 ```
 
 4. 打开浏览器访问 http://localhost:3000
+
+## UI组件库特性
+
+本项目使用 Ant Design 5.x 版本，享受以下特性：
+
+- **企业级设计语言**：遵循蚂蚁金服的设计规范
+- **高质量组件**：开箱即用的高质量 React 组件
+- **全面的设计工具**：丰富的设计资源和工具
+- **国际化支持**：内置国际化方案
+- **主题定制**：支持灵活的样式定制
+- **TypeScript 支持**：使用 TypeScript 开发，提供完整的类型定义文件
 
 ## 部署到 Cloudflare Pages
 
@@ -43,7 +62,7 @@ npm start
 
 - React
 - TypeScript
-- Chakra UI
+- Ant Design
 - qrcode.react
 
 ## 依赖说明
@@ -51,18 +70,13 @@ npm start
 ### 核心依赖
 - **React** (^18.2.0) - 用户界面库
 - **TypeScript** (^4.9.5) - 类型安全的JavaScript
-- **@chakra-ui/react** (^2.8.2) - 现代化的React组件库
+- **antd** (^5.12.8) - 企业级UI设计语言和React组件库
 - **qrcode.react** (^3.1.0) - React二维码生成组件
 
-### UI相关依赖
-- **@emotion/react** (^11.11.3) - Chakra UI的CSS-in-JS依赖
-- **@emotion/styled** (^11.11.0) - Chakra UI的样式组件依赖
-- **framer-motion** (^10.18.0) - Chakra UI的动画库依赖
-
 ### 国际化依赖
-- **i18next** (^25.2.1) - 国际化框架
-- **react-i18next** (^15.5.3) - React国际化绑定
-- **i18next-browser-languagedetector** (^8.2.0) - 浏览器语言检测
+- **i18next** (^23.15.1) - 国际化框架
+- **react-i18next** (^13.5.0) - React国际化绑定
+- **i18next-browser-languagedetector** (^7.2.1) - 浏览器语言检测
 
 ### 开发工具依赖
 - **react-scripts** (5.0.1) - Create React App构建工具
