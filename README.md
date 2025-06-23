@@ -10,6 +10,21 @@
 - 多语言支持（国际化）
 - 企业级组件库保证的优秀用户体验
 
+## 项目优化
+
+### Git 忽略文件优化
+项目已针对现代前端开发工作流优化了 `.gitignore` 文件：
+
+- ✅ **全面的依赖忽略**：支持 npm、yarn、pnpm
+- ✅ **Playwright 测试文件**：忽略测试报告和缓存
+- ✅ **TypeScript 编译产物**：忽略 tsbuildinfo 等文件
+- ✅ **代码质量工具缓存**：ESLint、Prettier、Stylelint 缓存
+- ✅ **多IDE支持**：VS Code、IntelliJ IDEA、Vim 等
+- ✅ **部署平台文件**：Vercel、Netlify、Cloudflare 等
+- ✅ **环境变量保护**：所有 .env 文件变体
+
+详细说明请查看：[GitIgnore 优化文档](docs/GITIGNORE_OPTIMIZATION.md)
+
 ## 本地开发
 
 1. 克隆项目
@@ -35,6 +50,40 @@ npm start
 ```
 
 4. 打开浏览器访问 http://localhost:3000
+
+## 测试
+
+### 单元测试
+```bash
+npm test
+```
+
+### 端到端测试 (Playwright)
+```bash
+# 运行所有E2E测试
+npm run test:e2e
+
+# 使用UI模式运行测试
+npm run test:e2e:ui
+
+# 有头模式运行测试（可以看到浏览器）
+npm run test:e2e:headed
+```
+
+### Playwright MCP支持
+本项目已集成Playwright，**完全支持Playwright MCP**：
+
+- ✅ **配置完整**：已有完整的Playwright配置文件
+- ✅ **多浏览器支持**：支持Chrome、Firefox、Safari测试
+- ✅ **移动端测试**：支持移动设备视口测试
+- ✅ **MCP就绪**：可以通过MCP进行自动化测试操作
+
+**MCP使用场景**：
+- 自动化UI测试
+- 性能测试和监控
+- 回归测试自动化
+- 跨浏览器兼容性测试
+- 移动端响应式测试
 
 ## UI组件库特性
 
@@ -84,9 +133,10 @@ npm start
 - **dsbridge** (^3.1.4) - JavaScript桥接工具
 
 ### 测试依赖
-- **@testing-library/react** (^16.3.0) - React测试工具
+- **@testing-library/react** (^16.3.0) - React单元测试工具
 - **@testing-library/jest-dom** (^6.6.3) - Jest DOM测试扩展
 - **@testing-library/user-event** (^13.5.0) - 用户事件测试工具
+- **@playwright/test** - 端到端测试框架，支持多浏览器自动化测试
 
 ### 类型定义
 - **@types/react** (^18.2.55) - React类型定义

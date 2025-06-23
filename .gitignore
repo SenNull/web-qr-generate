@@ -1,23 +1,135 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
+# Dependencies
 /node_modules
 /.pnp
 .pnp.js
+.pnp.*
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.yarn-integrity
+jspm_packages/
+bower_components/
 
-# testing
+# Testing & Coverage
 /coverage
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+test-results/
+playwright-report/
+playwright/.cache/
+*.lcov
+.nyc_output
 
-# production
+# Production Build
 /build
+/dist
+*.tgz
+*.tar.gz
+build/Release
 
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# Runtime & Process Files
+pids
+*.pid
+*.seed
+*.pid.lock
 
+# Logs
+logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Caches
+.cache
+.parcel-cache
+.npm
+.eslintcache
+.stylelintcache
+.prettiercache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Environment Variables
+.env
+.env*.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.test
+.env.production
+
+# Framework Specific
+.next
+out
+.nuxt
+.vuepress/dist
+.serverless/
+.fusebox/
+.dynamodb/
+.netlify
+.vercel
+.turbo
+
+# IDE & Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.vscode-test
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*~
+
+# Temporary Files
+*.tmp
+*.temp
+temp/
+tmp/
+*.bak
+*.backup
+
+# Optional Tools
+.grunt
+.tern-port
+.node_repl_history
+lib-cov
+.husky/_
+
+# Storybook
+.out
+.storybook-out
+storybook-static
+
+# Local Development
+.local
+
+# Diagnostic Reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
